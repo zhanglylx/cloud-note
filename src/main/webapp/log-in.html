@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="static/scripts/login/user-login.js"></script>
+    <script src="static/scripts/login/user-register.js"></script>
+    <style>
+    </style>
+    <script>
+        $(function () {
+            //登录事件绑定
+            $("#login").click(userLogin);
+            //注册功能事件绑定
+            $("#register").click(register);
+            $("#registerSubmit").click(registerSubmit);
+            $("#registerPasswordAffirm").blur(registerPasswordAffirm);
+            //    注册取消功能事件绑定
+            $("#registerCancel").click(registerCancel);
+        });
+
+    </script>
+</head>
+<body>
+<div id="loginDiv">
+    <label>用户名：
+        <input type="text" id="count" name="name"><span id="count_span"></span>
+    </label>
+    <label> 密码：
+        <input type="password" id="password" name="password"><span id="password_span"></span>
+    </label>
+    <div>
+        <span> <input id="login" type="button" value="登录"></span>
+        <span> <input id="register" type="button" value="注册"></span>
+    </div>
+</div>
+<div id="registerDiv" style="display: none">
+    <label>用户名:<input type="text" id="registerName"/></label><span id="registerNameSpan"></span>
+    <label>密码 : <input type="password" id="registerPassword"/></label><span id="registerPasswordSpan"></span>
+    <label>确认密码 : <input type="password" id="registerPasswordAffirm"/></label><span
+        id="registerPasswordAffirmSpan"></span>
+    <label>昵称 : <input type="text" id="registerNike"/></label>
+    <input id="registerSubmit" type="button" value="注册">
+    <input id="registerCancel" type="button" value="返回">
+</div>
+</body>
+</html>

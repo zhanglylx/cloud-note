@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.zly.dao.NoteDaoMapper">
+    <select id="findByBookId" resultType="map">
+      SELECT note.cn_note_id,note.cn_note_title FROM cn_note AS note
+      WHERE  note.cn_note_status_id =1 AND note.cn_notebook_id=#{bookId} ORDER BY note.cn_note_create_time;
+   </select>
+    <select id="findByNoteId" resultType="cn.zly.entity.Note">
+        SELECT * FROM cn_note WHERE cn_note_id = #{noteId} AND cn_note_status_id=1;
+    </select>
+    <update id="updateNote">
+        UPDATE cn_note SET cn_note_title = #{note.cn_note_title}
+        ,cn_note_body=#{note.cn_note_body}
+        ,cn_note_last_modify_time = #{note.cn_note_last_modify_time}
+        WHERE cn_note_id = #{note.cn_note_id};
+    </update>
+
+    <insert id="save">
+        INSERT INTO cn_note(
+            cn_note_id,
+            cn_notebook_id,
+            cn_user_id,
+            cn_note_status_id,
+            cn_note_type_id,
+            cn_note_title,
+            cn_note_body,
+            cn_note_create_time,
+            cn_note_last_modify_time)
+        VALUES (
+            #{note.cn_note_id},
+            #{note.cn_notebook_id},
+            #{ note.cn_user_id},
+            #{ note.cn_note_status_id},
+            #{ note.cn_note_type_id},
+            #{ note.cn_note_title},
+            #{ note.cn_note_body},
+            #{ note.cn_note_create_time},
+            #{ note.cn_note_last_modify_time}
+        );
+    </insert>
+</mapper>
+
+
+
+
+
+

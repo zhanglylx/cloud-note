@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.zly.dao.BookDaoMapper">
+    <select id="findByUserId" resultType="cn.zly.entity.Book">
+       SELECT * FROM cn_notebook WHERE cn_user_id = #{userId} AND cn_notebook_status = 1 ORDER BY cn_notebook_createtime ;
+   </select>
+    <insert id="save">
+        INSERT INTO cn_notebook()
+        VALUES (
+        #{book.cn_notebook_id},
+        #{book.cn_user_id},
+        #{book.cn_notebook_type_id},
+        #{book.cn_notebook_name},
+        #{book.cn_notebook_desc},
+        #{book.cn_notebook_status},
+        #{book.cn_notebook_createtime},
+        #{book.cn_notebook_updatetime}
+        );
+    </insert>
+</mapper>
+
+
+
+
+
+

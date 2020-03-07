@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>edit</title>
+    <link href="static/css/edit.css" rel="stylesheet"/>
+    <script src="static/scripts/edit/edit.js"></script>
+    <script src="static/scripts/edit/book.js"></script>
+    <script src="static/scripts/edit/note.js"></script>
+    <script>
+        var ueDitor = UE.getEditor("myEditor");
+        $(function () {
+            _$buttonClickUndoable($("#saveNote"), true);
+            loadUserBooks();
+            //    绑定笔记本单击事件//动态绑定
+            $("#book_ul").on("click", "li", loadNoteBook);
+            //绑定单击笔记加载信息事件
+            $("#note_ul").on("click", "li", loadNote);
+            $("#saveNote").click(updateNote);
+            //    弹出创建笔记本aler
+            $("#createBook,#createNote").click(alertAddBookWindows);
+            //绑定取消按钮
+            $("#can").on("click", ".cancel,.close", closeAlertAddBookWindows);
+            //绑定创建按钮。创建笔记
+            $("#can").on("click", "#alert-notebook_noteBookCreateButton", createNoteOrBook);
+            //    笔记下拉菜单
+            $(".edit_div").on("click", ".li_button", function () {
+                $(this).parent().next().slideToggle("slow");
+                //阻止冒泡事件
+                return false;
+            });
+            //笔记本分享按钮绑定
+            $("#note_ul").on("click", ".ul_dl_share", function () {
+                //    获取请求参数
+                const id = $(this).parents(".ul_functional_domain").prev().data("noteId");
+                //发送请求
+                _$ajaxPostJSON(
+                    path_edit_note_share_add,
+                    {"noteId": id},
+                    function (response) {
+
+                    }, function () {
+                        alert("分享失败");
+                    }
+                );
+                return false;
+            });
+
+
+            $("body").click(function () {
+                //隐藏功能框
+                $(".ul_functional_domain").hide("slow");
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="opacity_bg" style="display: none"></div>
+<div id="can" style="display: none"></div>
+<div class="edit_div">
+    <div class="book_div">
+        <h3>全部笔记本<input class="create" id="createBook" type="button" value="新建"></h3>
+        <ul id="book_ul">
+
+        </ul>
+        <div class="clear_float"></div>
+    </div>
+    <div class="note_div">
+        <h3>全部笔记本<input class="create" id="createNote" type="button" value="新建" disabled></h3>
+        <ul id="note_ul">
+
+        </ul>
+        <div class="clear_float"></div>
+    </div>
+    <input type="text" id="input_note_title" placeholder="笔记标题"/>
+    <input type="button" id="saveNote" value="保存笔记"/>
+    <script id="myEditor" style="height: 200px;width: 100%"></script>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+:root{
+    /*chocolate*/
+    --theme-colors:darkcyan;
+}
+.edit_div {
+    padding: 20px;
+}
+
+.liChecked {
+    background-color: var(--theme-colors);
+    color: #ffffaa;
+    font-weight: bold;
+    font-size: 20px;
+}
+.liChecked .li_button{
+    font-size: 20px;
+    color: #ff7800;
+    font-weight: bold;
+}
+
+.create {
+    margin-left: 50px;
+}
+
+.opacity_bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(244, 244, 244, 0.7);
+    z-index: 9999;
+}
+
+#can {
+    z-index: 100000;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 30%; /*偏移*/;
+    left: 40%;
+
+}
+.li_button{
+    float: right;
+    margin-right: 20px;
+}
+.clear_float{
+    clear: right;
+}
+#book_ul,#note_ul{
+    padding: 3px 20px;
+}
+
+.ul_dl{
+    margin-bottom: 5px;
+}
+#book_ul,#note_ul,.li_button,.ul_functional_domain:hover{
+    cursor: pointer;
+}
+
+
