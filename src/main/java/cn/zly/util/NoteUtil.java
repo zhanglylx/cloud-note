@@ -6,6 +6,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.Base64;
+import java.util.List;
 import java.util.UUID;
 
 public class NoteUtil {
@@ -105,6 +106,11 @@ public class NoteUtil {
         }
         return null;
     }
+
+    public static boolean isListNullOrEmpty(List list) {
+        return list == null || list.size() == 0;
+    }
+
 
     public static void main(String[] args) {
         System.out.println(getMD5Str("123456"));

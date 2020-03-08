@@ -1,5 +1,6 @@
 package cn.zly.contoller;
 
+import cn.zly.entity.Share;
 import cn.zly.service.ShareService;
 import cn.zly.util.NoteResult;
 import org.apache.ibatis.annotations.Param;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.faces.annotation.RequestMap;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/share", produces = "application/json;charset:utf-8")
@@ -23,4 +25,11 @@ public class ShareNoteController {
     public NoteResult<Object> execute(@RequestParam("noteId") String noteId) {
         return shareService.shareNote(noteId);
     }
+
+    @RequestMapping(value = "/search.do", method = RequestMethod.POST)
+    @ResponseBody
+    public NoteResult<List<Share>> search(@RequestParam("keyword") String keyword) {
+        return shareService.searchNote(keyword);
+    }
+
 }

@@ -8,7 +8,7 @@ document.write("<script src='static/scripts/ue/ueditor.parse.js'></script>");
 document.write("<script src='static/scripts/ue/lang/zh-cn/zh-cn.js'></script>");
 
 
-var path_host = "http://localhost:8080/cloud_note_war";
+var path_host = "http://localhost:8080/";
 // var path_login_page = path + "/log-in.html";
 // var path_login = path + "/user/login.do";
 // var path_login_add = path + "/user/add.do";
@@ -29,6 +29,7 @@ const path_edit_note_load = "note/load.do";
 const path_edit_note_update = "note/update.do";
 const path_edit_note_add = "note/add.do";
 const path_edit_note_share_add = "share/add.do";
+const path_edit_note_share_search = "share/search.do";
 const user_id_Cookie_key = "userid";
 const create_BookOrNote_button_status = "create_BookOrNote_button_status";
 

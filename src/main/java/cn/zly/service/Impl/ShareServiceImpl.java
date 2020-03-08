@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service("shareService")
 public class ShareServiceImpl implements ShareService {
@@ -43,6 +44,25 @@ public class ShareServiceImpl implements ShareService {
         shareDaoMapper.save(share);
         noteResult.setStatus(0);
         noteResult.setMsg("分享成功");
+        return noteResult;
+    }
+
+    @Override
+    public NoteResult<List<Share>> searchNote(String keyword) {
+        if (StringUtils.isBlank(keyword)) {
+            keyword = "";
+        }
+        keyword = "%" + keyword + "%";
+        List<Share> list = shareDaoMapper.findLikeTitle(keyword);
+        NoteResult<List<Share>> noteResult = new NoteResult<>();
+        if (list == null || list.size() == 0) {
+            noteResult.setMsg("没有查询到任何搜索分享");
+            noteResult.setStatus(1);
+            return noteResult;
+        }
+        noteResult.setStatus(0);
+        noteResult.setMsg("查询成功");
+        noteResult.setData(list);
         return noteResult;
     }
 }

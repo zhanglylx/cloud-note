@@ -30,21 +30,10 @@
                 return false;
             });
             //笔记本分享按钮绑定
-            $("#note_ul").on("click", ".ul_dl_share", function () {
-                //    获取请求参数
-                const id = $(this).parents(".ul_functional_domain").prev().data("noteId");
-                //发送请求
-                _$ajaxPostJSON(
-                    path_edit_note_share_add,
-                    {"noteId": id},
-                    function (response) {
-
-                    }, function () {
-                        alert("分享失败");
-                    }
-                );
-                return false;
-            });
+            $("#note_ul").on("click", ".ul_dl_share", shareButtonClick);
+            //搜索分享笔记
+            _$keydownEnter_ClickStatic("#right_functional_zone_search_note",
+                "#right_functional_zone_div_search", searchShare);
 
 
             $("body").click(function () {
@@ -57,6 +46,20 @@
 <body>
 <div class="opacity_bg" style="display: none"></div>
 <div id="can" style="display: none"></div>
+<div class="top_div">
+    <div class="right_functional_zone_div">
+        <input type="text" id="right_functional_zone_search_note" placeholder="分享的笔记名称"/>
+        <button id="right_functional_zone_div_search">搜索</button>
+    </div>
+    <div class="top_div_clear_float"></div>
+
+</div>
+<div class="share_note_div" style="display: none">
+    <h3>分享的笔记</h3>
+    <ul class="share_note_div_ul">
+
+    </ul>
+</div>
 <div class="edit_div">
     <div class="book_div">
         <h3>全部笔记本<input class="create" id="createBook" type="button" value="新建"></h3>

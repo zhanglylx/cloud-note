@@ -18,6 +18,9 @@
        #{share.cn_note_id}
        );
     </insert>
+    <select id="findLikeTitle" resultType="cn.zly.entity.Share">
+      SELECT * FROM cn_share WHERE cn_share_title LIKE #{title}
+    </select>
 </mapper>
 
 
