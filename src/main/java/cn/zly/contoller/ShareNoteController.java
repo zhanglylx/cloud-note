@@ -28,8 +28,8 @@ public class ShareNoteController {
 
     @RequestMapping(value = "/search.do", method = RequestMethod.POST)
     @ResponseBody
-    public NoteResult<List<Share>> search(@RequestParam("keyword") String keyword) {
-        return shareService.searchNote(keyword);
+    public NoteResult<List<Share>> search(@RequestParam("keyword") String keyword, @RequestParam("page") Integer page) {
+        return shareService.searchNote(keyword, page);
     }
 
 }

@@ -7,6 +7,7 @@
     <script src="static/scripts/edit/edit.js"></script>
     <script src="static/scripts/edit/book.js"></script>
     <script src="static/scripts/edit/note.js"></script>
+    <script src="static/scripts/edit/share.js"></script>
     <script>
         var ueDitor = UE.getEditor("myEditor");
         $(function () {
@@ -34,7 +35,8 @@
             //搜索分享笔记
             _$keydownEnter_ClickStatic("#right_functional_zone_search_note",
                 "#right_functional_zone_div_search", searchShare);
-
+            //搜索分享中的更多按钮
+            $("#more_note").click(moreSearchShare);
 
             $("body").click(function () {
                 //隐藏功能框
@@ -59,6 +61,7 @@
     <ul class="share_note_div_ul">
 
     </ul>
+    <button id="more_note">更多</button>
 </div>
 <div class="edit_div">
     <div class="book_div">

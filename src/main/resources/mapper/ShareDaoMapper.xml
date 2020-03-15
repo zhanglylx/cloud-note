@@ -19,7 +19,7 @@
        );
     </insert>
     <select id="findLikeTitle" resultType="cn.zly.entity.Share">
-      SELECT * FROM cn_share WHERE cn_share_title LIKE #{title}
+      SELECT * FROM cn_share WHERE cn_share_title LIKE #{map.title} limit #{map.begin},3
     </select>
 </mapper>
 

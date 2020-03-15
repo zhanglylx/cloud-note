@@ -8,5 +8,5 @@ import java.util.List;
 public interface ShareService {
     NoteResult<Object> shareNote(String noteId);
 
-    NoteResult<List<Share>> searchNote(String keyword);
+    NoteResult<List<Share>> searchNote(String keyword,Integer page);
 }

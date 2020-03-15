@@ -107,7 +107,7 @@ function _$goToUrlNewPage(url, method, params) {
  * @param boolean true:不可点，false：可点击
  */
 function _$buttonClickUndoable($button, boolean) {
-    $button.attr('disabled', boolean);
+    $($button).attr('disabled', boolean);
 };
 
 /**
@@ -116,7 +116,7 @@ function _$buttonClickUndoable($button, boolean) {
  * @returns {string}
  */
 function _$getValTrim($element) {
-    return $element.val().trim();
+    return $($element).val().trim();
 };
 
 /**
@@ -420,11 +420,40 @@ function _$randomNum(minNum, maxNum) {
         default:
             return 0;
     }
+};
+
+/**
+ * 获取元素颜色的rgb
+ * @param selector
+ * @param selectorAttribute 获取的元素属性
+ * @returns {string[]}rgb数组
+ */
+function _$cssRGB(selector, selectorAttribute) {
+    var color = $(selector).css(selectorAttribute);
+    color = color.replace("rgb(", "");
+    color = color.replace(")", "");
+    color = color.split(",");
+    return color;
+};
+
+
+function _$cssGetRGBA(selector, selectorAttribute, a) {
+    var color = _$cssRGB(selector, selectorAttribute);
+    var rgba = "rgba(";
+    _$traversalList(color, function (n) {
+        rgba += n + ",";
+    });
+    rgba += a + ")";
+    return rgba;
 }
 
-function _$enter() {
+function _$cssGetSelectorColorRGBA(selector, a) {
+    return _$cssGetRGBA(selector, "color", a)
+};
 
-}
+function _$cssGetSelectorBColorRGBA(selector, a) {
+    return _$cssGetRGBA(selector, "background-color", a)
+};
 
 /**
  *  * 静态绑定元素回车与其他元素点击事件
