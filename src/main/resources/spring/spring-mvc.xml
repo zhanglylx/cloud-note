@@ -19,13 +19,15 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
     <import resource="classpath*:spring/spring-mybatis.xml"/>
+    <import resource="classpath*:spring/spring-aop.xml"/>
+    <import resource="classpath*:spring/spring-transaction.xml"/>
     <!--    配置组件扫描-->
     <context:component-scan base-package="cn.zly"/>
     <!--    配置mvc注解扫描-->
     <mvc:annotation-driven/>
-    <!-- static resources -->
-    <mvc:resources location="/static/" mapping="/static/**" cache-period="864000"/>
-    <!-- 24 * 3600 * 10 -->
+<!--    &lt;!&ndash; static resources &ndash;&gt;-->
+<!--    <mvc:resources location="/static/" mapping="/static/**" cache-period="864000"/>-->
+<!--    &lt;!&ndash; 24 * 3600 * 10 &ndash;&gt;-->
 </beans>
 
 

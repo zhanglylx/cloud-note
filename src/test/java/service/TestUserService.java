@@ -17,6 +17,7 @@ public class TestUserService implements BaseTest {
     @Test
     public void test1() {
         NoteResult<User> noteResult = this.service.checkLogin("1", "1");
+        System.out.println(service.getClass().getName());
         System.out.println(noteResult);
     }
 

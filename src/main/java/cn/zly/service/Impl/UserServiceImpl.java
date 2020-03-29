@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import sun.misc.BASE64Encoder;
 
 import javax.annotation.Resource;
+import javax.transaction.Transactional;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 
 @Service(value = "userService")
+@Transactional
 public class UserServiceImpl implements UserService {
     @Resource(name = "userDao")
     private UserDaoMapper userDao;
