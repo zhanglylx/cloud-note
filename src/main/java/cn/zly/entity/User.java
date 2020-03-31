@@ -2,6 +2,7 @@ package cn.zly.entity;
 
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -11,6 +12,15 @@ public class User implements Serializable {
     private String cn_user_password;
     private String cn_user_tonken;
     private String cn_user_nick;
+    private List<Book> books;
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
 
     public String getCn_user_id() {
         return cn_user_id;
@@ -69,15 +79,16 @@ public class User implements Serializable {
         return Objects.hash(cn_user_id, cn_user_name, cn_user_password, cn_user_tonken, cn_user_nick);
     }
 
+
     @Override
     public String toString() {
-
         return "User{" +
                 "cn_user_id='" + cn_user_id + '\'' +
                 ", cn_user_name='" + cn_user_name + '\'' +
                 ", cn_user_password='" + cn_user_password + '\'' +
                 ", cn_user_tonken='" + cn_user_tonken + '\'' +
                 ", cn_user_nick='" + cn_user_nick + '\'' +
+                ", books=" + books +
                 '}';
     }
 }

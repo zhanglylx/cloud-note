@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.zly.dao.RelationDaoMapper">
+    <!--    使用两条SQL语句加载数据-->
+    <select id="findUserAndBooks" resultMap="userMap1">
+            SELECT * FROM cn_user WHERE cn_user_id=#{userId}
+        </select>
+    <resultMap id="userMap1" type="cn.zly.entity.User">
+        <!--        主键使用id标签-->
+        <id property="cn_user_id" column="cn_user_id"/>
+        <!--        指定books属性是一个list集合，泛型为Book-->
+        <!--        javaType 返回类型，ofType 每一个javaType中的类型-->
+        <collection property="books"
+                    javaType="java.util.List"
+                    ofType="cn.zly.entity.Book"
+                    select="findBooks"
+                    column="cn_user_id"
+        >
+
+        </collection>
+    </resultMap>
+    <select id="findBooks"
+            resultType="cn.zly.entity.Book"
+    >
+        SELECT * FROM cn_notebook WHERE cn_user_id=#{cn_user_id}
+    </select>
+    <!--    一条SQL加载USER-->
+    <select id="findUserAndBooks1" resultMap="userMap2">
+        SELECT * FROM cn_user u JOIN cn_notebook b ON (u.cn_user_id = b.cn_user_id) WHERE u.cn_user_id = #{userId}
+    </select>
+    <resultMap id="userMap2" type="cn.zly.entity.User">
+        <!--        定义cn_user字段装载，不能省略-->
+        <id property="cn_user_id" column="cn_user_id"/>
+        <result property="cn_user_name" column="cn_user_name"/>
+        <result property="cn_user_nick" column="cn_user_nick"/>
+        <result property="cn_user_password" column="cn_user_password"/>
+        <result property="cn_user_tonken" column="cn_user_tonken"/>
+        <collection property="books"
+                    javaType="list"
+                    ofType="cn.zly.entity.Book">
+            <id property="cn_notebook_id" column="cn_notebook_id"/>
+            <result property="cn_user_id" column="cn_user_id"/>
+            <result property="cn_notebook_name" column="cn_notebook_name"/>
+            <!--            ....以下其他字段没有写-->
+        </collection>
+    </resultMap>
+</mapper>
+
+
+
+
+
+

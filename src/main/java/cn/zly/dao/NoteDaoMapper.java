@@ -16,4 +16,6 @@ public interface NoteDaoMapper extends ISqlMapper {
     int updateNote(@Param("note") Note note);
 
     void save(@Param("note") Note note);
+
+
 }

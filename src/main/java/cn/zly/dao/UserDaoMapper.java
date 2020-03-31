@@ -6,7 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository("userDao")
 public interface UserDaoMapper extends ISqlMapper {
-    User findByName(String name);
+    User findByName(@Param("name") String name);
 
     void save(@Param("user") User user);
+
 }
