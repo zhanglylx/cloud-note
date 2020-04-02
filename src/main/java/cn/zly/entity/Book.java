@@ -13,6 +13,15 @@ public class Book implements Serializable {
     private Integer cn_notebook_status;
     private Timestamp cn_notebook_createtime;
     private Timestamp cn_notebook_updatetime;
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Integer getCn_notebook_status() {
         return cn_notebook_status;
@@ -88,12 +97,13 @@ public class Book implements Serializable {
                 Objects.equals(cn_notebook_type_id, book.cn_notebook_type_id) &&
                 Objects.equals(cn_notebook_name, book.cn_notebook_name) &&
                 Objects.equals(cn_notebook_desc, book.cn_notebook_desc) &&
-                Objects.equals(cn_notebook_createtime, book.cn_notebook_createtime);
+                Objects.equals(cn_notebook_createtime, book.cn_notebook_createtime) &&
+                Objects.equals(user, book.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cn_notebook_id, cn_user_id, cn_notebook_type_id, cn_notebook_name, cn_notebook_desc, cn_notebook_createtime);
+        return Objects.hash(cn_notebook_id, cn_user_id, cn_notebook_type_id, cn_notebook_name, cn_notebook_desc, cn_notebook_createtime, user);
     }
 
     @Override
@@ -107,6 +117,7 @@ public class Book implements Serializable {
                 ", cn_notebook_status=" + cn_notebook_status +
                 ", cn_notebook_createtime=" + cn_notebook_createtime +
                 ", cn_notebook_updatetime=" + cn_notebook_updatetime +
+                ", user=" + user +
                 '}';
     }
 }

@@ -19,7 +19,6 @@ import java.util.List;
 public class ShareNoteController {
     @Resource
     private ShareService shareService;
-
     @RequestMapping(value = "/add.do", method = RequestMethod.POST)
     @ResponseBody
     public NoteResult<Object> execute(@RequestParam("noteId") String noteId) {
