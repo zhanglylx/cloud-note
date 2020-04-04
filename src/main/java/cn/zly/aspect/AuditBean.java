@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.NoSuchElementException;
 
@@ -28,6 +29,7 @@ public class AuditBean {
             System.out.println(str + " 耗时：" + (timeEnd - timeStart));
         } catch (Throwable throwable) {
             throwable.printStackTrace();
+            throw new RuntimeException(throwable);
         }
         return object;
     }

@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.sql.SQLException;
@@ -22,13 +23,14 @@ import java.util.List;
 import java.util.Map;
 
 @Service("shareService")
+
 public class ShareServiceImpl implements ShareService {
     @Resource
     private NoteDaoMapper noteDaoMapper;
     @Resource
     private ShareDaoMapper shareDaoMapper;
-
     @Override
+    @Transactional(readOnly = true)
     public NoteResult<Object> shareNote(String noteId) {
         NoteResult<Object> noteResult = new NoteResult<>();
         if (StringUtils.isBlank(noteId)) {
@@ -51,11 +53,15 @@ public class ShareServiceImpl implements ShareService {
             share.setCn_share_title(note.getCn_note_title());
             share.setCn_share_body(note.getCn_note_body());
             shareDaoMapper.save(share);
+//            模拟异常
+//            String s = null;
+//            s.length();
             noteResult.setStatus(0);
             noteResult.setMsg("分享成功");
         } catch (DuplicateKeyException e) {
             noteResult.setStatus(1);
             noteResult.setMsg("您已经分享过此条笔记");
+            throw new RuntimeException(e);
         }
         return noteResult;
     }

@@ -9,6 +9,6 @@
     <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dbcp"></property>
     </bean>
-    <!--    开启tracsaction标记，将标记作用在具体方法上-->
+    <!--    开启@Tracsactional标记，将标记作用在具体方法上-->
     <tx:annotation-driven transaction-manager="txManager"/>
 </beans>
