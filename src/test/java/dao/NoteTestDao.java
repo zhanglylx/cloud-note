@@ -4,6 +4,9 @@ import cn.zly.dao.NoteDaoMapper;
 import cn.zly.entity.Note;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class NoteTestDao implements BaseTest {
     private NoteDaoMapper noteDao = ac.getBean("noteDao", NoteDaoMapper.class);
 
@@ -26,5 +29,15 @@ public class NoteTestDao implements BaseTest {
         note.setCn_note_last_modify_time(System.currentTimeMillis());
         System.out.println(noteDao.updateNote(note));
     }
+
+    @Test
+    public void testUpdateNoteByMap() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("title", "java");
+        map.put("body", "java");
+        map.put("cn_note_id", "e122ba1fe1fa99f5d953ee53fa62f7c8");
+        noteDao.updateNoteByMap(map);
+    }
+
 
 }
