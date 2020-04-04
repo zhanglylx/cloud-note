@@ -13,7 +13,7 @@ public interface NoteDaoMapper extends ISqlMapper {
 
     Note findByNoteId(@Param("noteId") String noteId);
 
-    int updateNote(@Param("note") Note note);
+    int updateNote(@Param("note") Map<String,Object> map);
 
     void save(@Param("note") Note note);
 
