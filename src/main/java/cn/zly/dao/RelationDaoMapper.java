@@ -16,4 +16,5 @@ public interface RelationDaoMapper extends ISqlMapper {
 
     //    关联单个对象
     List<Book> findBookAndUser();
+    List<Book> findBookAndUser1();
 }

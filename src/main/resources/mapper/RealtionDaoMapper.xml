@@ -25,7 +25,7 @@
     <select id="findBooks"
             resultType="cn.zly.entity.Book"
     >
-        SELECT * FROM cn_notebook WHERE cn_user_id=#{cn_user_id}
+        SELECT * FROM cn_notebook WHERE cn_user_id=#{cn_user_9id}
     </select>
     <!--    一条SQL加载USER-->
     <select id="findUserAndBooks1" resultMap="userMap2">
@@ -38,6 +38,7 @@
         <result property="cn_user_nick" column="cn_user_nick"/>
         <result property="cn_user_password" column="cn_user_password"/>
         <result property="cn_user_tonken" column="cn_user_tonken"/>
+        <!--        collection 关联多个对象-->
         <collection property="books"
                     javaType="list"
                     ofType="cn.zly.entity.Book">
@@ -54,7 +55,29 @@
         SELECT * FROM cn_notebook
     </select>
     <resultMap id="bookMap" type="cn.zly.entity.Book">
-
+        <!--association 关联单个对象-->
+        <association property="user"
+                     javaType="cn.zly.entity.User"
+                     select="findUser"
+                     column="cn_user_id"
+        />
+    </resultMap>
+    <select id="findUser" resultType="cn.zly.entity.User">
+        SELECT * FROM cn_user WHERE cn_user_id = #{id}
+    </select>
+    <!--    一条语句实现-->
+    <select id="findBookAndUser1" resultMap="bookMap1">
+        SELECT * FROM cn_notebook AS book LEFT JOIN cn_user AS user ON book.cn_user_id = user.cn_user_id
+    </select>
+    <resultMap id="bookMap1" type="cn.zly.entity.Book">
+        <id property="cn_notebook_id" column="cn_notebook_id"/>
+        <result property="cn_user_id" column="cn_user_id"/>
+        <result property="cn_notebook_name" column="cn_notebook_name"/>
+        <result property="cn_notebook_desc" column="cn_notebook_desc"/>
+        <association property="user" javaType="cn.zly.entity.User">
+            <id property="cn_user_id" column="cn_user_id"/>
+            <result property="cn_user_name" column="cn_user_name"/>
+        </association>
     </resultMap>
 
 </mapper>
