@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.zly.dao.EmpDaoMapper">
+    <!--MYSQL:数据库自动生成主键，获取主键值放入emp对象的id属性中-->
+    <insert id="save" useGeneratedKeys="true" keyProperty="emp.id" >
+        INSERT INTO t_emp(name,age) VALUES (#{emp.name},#{emp.age})
+    </insert>
+</mapper>
+
+
+
+
+
+
